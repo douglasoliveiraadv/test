@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{strip}
+<html lang="en" class="h-100">
+
+	<head>
+
+		{include file='includes/head.tpl.html'}
+
+	</head>
+
+	<body class="d-flex flex-column h-100">
+
+		<header>
+			{include pag='list' file='includes/header.tpl.html'}
+		</header>
+		
+		<main role="main" class="flex-shrink-0">
+
+			<div class="container">
+
+				<h1 class="mt-5 mb-5">Listagem</h1>
+
+				<table class="table">
+
+					<tr>
+						<th width="30">ID</th>
+						<th>Nome</th>
+						<th width="190">Criado</th>
+						<th width="190">Atualizado</th>
+						<th class="text-center" width="70"><a href="/test/form/"><i class="fas fa-plus"></i></a></th>
+					</tr>
+	
+					{foreach from=$list item=curr_test}
+						<tr>
+							<td align="left">{$curr_test['id']}</td>
+							<td align="left">{$curr_test['nome']}</td>
+							<td align="left">{$curr_test['created_at']|date_format:"%d/%m/%Y %H:%M:%S"}</td>
+							<td align="left">{$curr_test['updated_at']|date_format:"%d/%m/%Y %H:%M:%S"}</td>
+							<td class="text-center">
+								<a href="/test/form/{$curr_test['id']}"><i class="fas fa-edit"></i></a> | <a class="text-danger" href="#deleteModal" class="trigger-btn" data-id="{$curr_test['id']}" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
+							</td>
+						</tr>
+					{/foreach}
+	
+				</table>
+
+			</div>
+
+		</main>
+
+		<div id="deleteModal" class="modal fade">
+			<div class="modal-dialog modal-confirm">
+				<div class="modal-content">
+					<div class="modal-header">			
+						<h4 class="modal-title">Tem certeza?</h4>	
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p class="text-center">Você realmente deseja deletar o registro?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+						<a id="btDelete" href="/test/del/{$curr_test['id']}" class="btn btn-danger">Deletar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer mt-auto py-3">
+
+			{include file='includes/footer.tpl.html'}
+
+			<script type="text/javascript" src="{assetFile file='js/list.js'}"></script>
+
+		</footer>
+
+	</body>
+
+</html>
+{/strip}

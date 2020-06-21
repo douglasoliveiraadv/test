@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{strip}
+<html lang="en" class="h-100">
+
+	<head>
+		{include file='includes/head.tpl.html'}
+	</head>
+
+	<body class="d-flex flex-column h-100">
+
+		<header>
+			{include pag='form' file='includes/header.tpl.html'}
+		</header>
+		
+		<main role="main" class="flex-shrink-0">
+
+			<div class="container">
+
+                <h1 class="mt-5">Formulário</h1>
+                
+                <hr/>
+
+                <form action="/test/update" method="POST">
+
+                    {if $Test['id']}
+
+                    <div class="form-group">
+                        <label for="inputId">ID</label>
+                        <input type="text" readonly="readonly" class="form-control" id="inputId" aria-describedby="idHelp" value="{$Test['id']}" value="{$Test['id']}"/>
+                        <small id="idHelp" class="form-text text-muted">Identificação do registro</small>
+                    </div>
+
+                    {/if}
+
+                    <div class="form-group">
+                      <label for="inputNome">Nome</label>
+                      <input name="nome" type="text" class="form-control" id="inputNome" aria-describedby="nomeHelp" value="{$Test['nome']}" placeholder="Digite o nome" required>
+                      <small id="nomeHelp" class="form-text text-muted">Preencha o nome do Teste</small>
+                    </div>
+
+                    <input type="hidden" name="id" value="{$Test['id']}" />
+
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+
+                </form>
+
+			</div>
+
+		</main>
+
+		<footer class="footer mt-auto py-3">
+			{include file='includes/footer.tpl.html'}
+		</footer>
+
+	</body>
+
+</html>
+{/strip}
